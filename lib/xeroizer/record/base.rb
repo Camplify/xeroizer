@@ -176,7 +176,7 @@ module Xeroizer
 
           log "[UPDATE SENT] (#{__FILE__}:#{__LINE__}) \r\n#{request}"
 
-          response = parent.http_post(request)
+          response = parent.send(parent.update_method, request)
 
           log "[UPDATE RECEIVED] (#{__FILE__}:#{__LINE__}) \r\n#{response}"
 

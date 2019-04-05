@@ -209,6 +209,10 @@ module Xeroizer
         :http_put
       end
 
+      def update_method
+        :http_post
+      end
+
       protected
 
 

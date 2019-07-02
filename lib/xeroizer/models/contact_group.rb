@@ -51,18 +51,18 @@ module Xeroizer
 
       # Turn a record into its XML representation.
       def to_xml(b = Builder::XmlMarkup.new(:indent => 2))
-        optional_root_tag(parent.class.optional_xml_root_name, b) do |c|
-          c.tag!('Contacts') {
-            attributes.except(:contact_group_id, :name, :status)[:contacts].each do |contact|
-              c.tag!('Contact') {
-                c.tag!('ContactID', contact[:contact_id])
-              }
-            end
-          }
+        if attributes[:contacts].present?
+          optional_root_tag(parent.class.optional_xml_root_name, b) do |c|
+            c.tag!('Contacts') {
+              attributes.except(:contact_group_id, :name, :status)[:contacts].each do |contact|
+                c.tag!('Contact') {
+                  c.tag!('ContactID', contact[:contact_id])
+                }
+              end
+            }
+          end
         end
       end
-
     end
-
   end
 end

@@ -131,7 +131,11 @@ module Xeroizer
         while results = all(options)
           if results.any?
             yield results
-            options[:page] += 1
+            if options[:single_page]
+              break
+            else
+              options[:page] += 1
+            end
           else
             break
           end
